@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+//package com.olkgroup.trackerapp.gen;
+// package models;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./models";
+option java_multiple_files = true;
+option java_package = "com.sample.gen";
+option java_outer_classname = "SampleProject";
+
+message HelloRequest {
+    string name=1;
+}
+
+message HelloResponse {
+    bool isSuccess=1;
+    string sentence=2;
+
+}
+
+message GuessNumberResponse {
+    bool isSuccess=1;
+    repeated int32 userRegions = 2; /// array of object 
+    google.protobuf.Timestamp time = 3; // example of using time
+}
+service AppApi {
+    // takes in both parmeter and has response
+    rpc SayHello(HelloRequest) returns (HelloResponse) {};
+    // takes in no parameter but has response
+    rpc GuessNumber(google.protobuf.Empty) returns (HelloResponse) {};
+
+}
