@@ -1,9 +1,8 @@
 /* @refresh reload */
 import { render } from 'solid-js/web';
-
-import './index.css';
-import App from './App';
-
+import { Toaster } from "solid-toast";
+import { Route, Router } from "@solidjs/router";
+import AppRoutes from './AppRoutes';
 const root = document.getElementById('root');
 
 if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
@@ -12,4 +11,8 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-render(() => <App />, root!);
+render(() => 
+<Router>
+  <AppRoutes />
+  <Toaster />
+</Router>, root!);

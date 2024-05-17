@@ -18,6 +18,7 @@ message HelloRequest {
 message HelloResponse {
     bool isSuccess=1;
     string sentence=2;
+    string reason=3;
 
 }
 

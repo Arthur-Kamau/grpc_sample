@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"govt-tracker/app"
-	"govt-tracker/app/database"
+	"grpc_sample/app"
+	"grpc_sample/app/database"
 
 	_ "github.com/lib/pq"
 
@@ -17,31 +17,6 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// @title Government Tracker API
-// @version 1.0
-// @description This is api des the following
-//				<br/> 1. Auth process ( Create Users, login, validate token) <br/>
-//				<br/> 2. Fetch and update profile <br/>
-//				<br/> 3.  <br/>
-//				<br/> 4. Create and view Gov projects <br/>
-//				<br/> 5. Create and view Gov projects <br/>
-//
-// @termsOfService http://swagger.io/terms/
-
-// @contact.name API Support
-// @contact.url http://www.swagger.io/support
-// @contact.email support@swagger.io
-
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-
-// @securityDefinitions.apikey
-// @in header
-// @name Authorization
-
-// @host identity-service.dev.da-ride.com
-// @BasePath /
-// @schemes https
 func main() {
 
 	// load .env file

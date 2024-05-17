@@ -23,9 +23,11 @@
     "vite-plugin-solid": "^2.8.2"
   },
   "dependencies": {
+    "@solidjs/router": "^0.10.9",
+    "bootstrap": "^5.3.2",
     "solid-js": "^1.8.11",
+    "solid-toast": "^0.5.0",
     "ts-proto": "^1.147.2",
-    "ts-protoc-gen": "^0.15.0",
-    "bootstrap": "^5.3.2"
+    "ts-protoc-gen": "^0.15.0"
   }
 }

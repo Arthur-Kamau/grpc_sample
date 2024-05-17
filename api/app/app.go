@@ -1,11 +1,12 @@
- 
 package app
 
 import (
 	"database/sql"
 	"fmt"
+	"math/rand"
+	"time"
+
 	"github.com/bugsnag/bugsnag-go/v2"
-	"net/http"
 
 	"os"
 
@@ -19,8 +20,8 @@ import (
 	"log"
 	"net"
 
-
 	. "grpc_sample/app/models"
+	 "grpc_sample/app/logger"
 
 	"google.golang.org/grpc"
 )
@@ -39,7 +40,7 @@ var sr Server
 // Initialize initializes configs and variable
 func (s *Server) Initialize(dbInstance *sql.DB) {
 
-	// s.Logger = logger.GetLog()
+	s.Logger = logger.GetLog()
 	s.DB = dbInstance
 
 	s.Redis = redis.NewClient(&redis.Options{
@@ -97,16 +98,25 @@ func (s *Server) setUpGRPCApi() {
 	}
 }
 
-func (s *Server) SayHello(ctx context.Context, in *in.HelloRequest) (*HelloResponse, error) {
+func (s *Server) SayHello(ctx context.Context, in *HelloRequest) (*HelloResponse, error) {
+	// if logic is large ue sample_controller
+	// if has db connection or therid part api etc use functions in sample_controller_util
 	return &HelloResponse{
-		SuccessFull: true,
-		Status:      http.StatusOK,
-		Reason:      "Hey working.",
+		IsSuccess: true,
+		Sentence: fmt.Sprintf("Hello %s from api", in.Name),
 	}, nil
 }
 
 
-func (s *Server) GenToken(ctx context.Context, in *empty.Empty) (*CommonResponse, error) {
+func (s *Server) GuessNumber(ctx context.Context, in *empty.Empty) (*HelloResponse, error) {
 
-	
+	rand.Seed(time.Now().UnixNano())
+	min := 1111
+	max := 9999
+	res := rand.Intn(max-min+1) + min
+
+	return &HelloResponse{
+		IsSuccess: true,
+		Sentence: fmt.Sprintf("Hello %d", res),
+	}, nil
 }
